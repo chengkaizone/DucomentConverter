@@ -7,16 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EA3CBC581FB040AA00673F94 /* CommentInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3CBC571FB040AA00673F94 /* CommentInfo.swift */; };
 		EAF067CC1F0DEA7E003BD261 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF067CB1F0DEA7E003BD261 /* AppDelegate.swift */; };
 		EAF067CE1F0DEA7E003BD261 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF067CD1F0DEA7E003BD261 /* ViewController.swift */; };
 		EAF067D01F0DEA7E003BD261 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EAF067CF1F0DEA7E003BD261 /* Assets.xcassets */; };
 		EAF067D31F0DEA7E003BD261 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EAF067D11F0DEA7E003BD261 /* Main.storyboard */; };
 		EAF067DB1F0DEF7B003BD261 /* ServerSite.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF067DA1F0DEF7B003BD261 /* ServerSite.swift */; };
-		EAFA13FF1F0F233A0097667C /* serversite.txt in Resources */ = {isa = PBXBuildFile; fileRef = EAFA13FE1F0F233A0097667C /* serversite.txt */; };
-		EAFA14011F0F237E0097667C /* serversite_backup.txt in Resources */ = {isa = PBXBuildFile; fileRef = EAFA14001F0F237E0097667C /* serversite_backup.txt */; };
+		EAFA13FF1F0F233A0097667C /* content.txt in Resources */ = {isa = PBXBuildFile; fileRef = EAFA13FE1F0F233A0097667C /* content.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EA3CBC571FB040AA00673F94 /* CommentInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentInfo.swift; sourceTree = "<group>"; };
 		EAF067C81F0DEA7D003BD261 /* DucomentConverter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DucomentConverter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAF067CB1F0DEA7E003BD261 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EAF067CD1F0DEA7E003BD261 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -24,8 +25,7 @@
 		EAF067D21F0DEA7E003BD261 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EAF067D41F0DEA7E003BD261 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EAF067DA1F0DEF7B003BD261 /* ServerSite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerSite.swift; sourceTree = "<group>"; };
-		EAFA13FE1F0F233A0097667C /* serversite.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = serversite.txt; sourceTree = "<group>"; };
-		EAFA14001F0F237E0097667C /* serversite_backup.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = serversite_backup.txt; sourceTree = "<group>"; };
+		EAFA13FE1F0F233A0097667C /* content.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = content.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,14 +58,14 @@
 		EAF067CA1F0DEA7D003BD261 /* DucomentConverter */ = {
 			isa = PBXGroup;
 			children = (
-				EAFA14001F0F237E0097667C /* serversite_backup.txt */,
-				EAFA13FE1F0F233A0097667C /* serversite.txt */,
+				EAFA13FE1F0F233A0097667C /* content.txt */,
 				EAF067CB1F0DEA7E003BD261 /* AppDelegate.swift */,
 				EAF067CD1F0DEA7E003BD261 /* ViewController.swift */,
 				EAF067CF1F0DEA7E003BD261 /* Assets.xcassets */,
 				EAF067D11F0DEA7E003BD261 /* Main.storyboard */,
 				EAF067D41F0DEA7E003BD261 /* Info.plist */,
 				EAF067DA1F0DEF7B003BD261 /* ServerSite.swift */,
+				EA3CBC571FB040AA00673F94 /* CommentInfo.swift */,
 			);
 			path = DucomentConverter;
 			sourceTree = "<group>";
@@ -130,10 +130,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EAFA14011F0F237E0097667C /* serversite_backup.txt in Resources */,
 				EAF067D01F0DEA7E003BD261 /* Assets.xcassets in Resources */,
 				EAF067D31F0DEA7E003BD261 /* Main.storyboard in Resources */,
-				EAFA13FF1F0F233A0097667C /* serversite.txt in Resources */,
+				EAFA13FF1F0F233A0097667C /* content.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -147,6 +146,7 @@
 				EAF067CE1F0DEA7E003BD261 /* ViewController.swift in Sources */,
 				EAF067DB1F0DEF7B003BD261 /* ServerSite.swift in Sources */,
 				EAF067CC1F0DEA7E003BD261 /* AppDelegate.swift in Sources */,
+				EA3CBC581FB040AA00673F94 /* CommentInfo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
