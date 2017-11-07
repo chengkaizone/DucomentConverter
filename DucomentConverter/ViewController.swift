@@ -17,7 +17,7 @@ class ViewController: NSViewController {
     
     var data: [ServerSite]!
     
-    var keywords: String = "视频编辑"
+    var keywords: String = "视频剪辑制作"
     var markSerial: Int32 = 12
     var commentData: [CommentInfo]!
     

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		EA3CBC581FB040AA00673F94 /* CommentInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3CBC571FB040AA00673F94 /* CommentInfo.swift */; };
+		EA5C8D5C1FB19730007DCFCC /* content_backup.txt in Resources */ = {isa = PBXBuildFile; fileRef = EA5C8D5B1FB19730007DCFCC /* content_backup.txt */; };
 		EAF067CC1F0DEA7E003BD261 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF067CB1F0DEA7E003BD261 /* AppDelegate.swift */; };
 		EAF067CE1F0DEA7E003BD261 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF067CD1F0DEA7E003BD261 /* ViewController.swift */; };
 		EAF067D01F0DEA7E003BD261 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EAF067CF1F0DEA7E003BD261 /* Assets.xcassets */; };
@@ -18,6 +19,7 @@
 
 /* Begin PBXFileReference section */
 		EA3CBC571FB040AA00673F94 /* CommentInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentInfo.swift; sourceTree = "<group>"; };
+		EA5C8D5B1FB19730007DCFCC /* content_backup.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = content_backup.txt; sourceTree = "<group>"; };
 		EAF067C81F0DEA7D003BD261 /* DucomentConverter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DucomentConverter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAF067CB1F0DEA7E003BD261 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EAF067CD1F0DEA7E003BD261 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -59,6 +61,7 @@
 			isa = PBXGroup;
 			children = (
 				EAFA13FE1F0F233A0097667C /* content.txt */,
+				EA5C8D5B1FB19730007DCFCC /* content_backup.txt */,
 				EAF067CB1F0DEA7E003BD261 /* AppDelegate.swift */,
 				EAF067CD1F0DEA7E003BD261 /* ViewController.swift */,
 				EAF067CF1F0DEA7E003BD261 /* Assets.xcassets */,
@@ -130,6 +133,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA5C8D5C1FB19730007DCFCC /* content_backup.txt in Resources */,
 				EAF067D01F0DEA7E003BD261 /* Assets.xcassets in Resources */,
 				EAF067D31F0DEA7E003BD261 /* Main.storyboard in Resources */,
 				EAFA13FF1F0F233A0097667C /* content.txt in Resources */,
