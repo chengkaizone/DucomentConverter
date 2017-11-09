@@ -18,10 +18,12 @@ class ViewController: NSViewController {
     var keywords: String = "单位转换计算器"
     var markSerial: Int32 = 24
     
+    var pageIndex: Int32 = 1
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.setupData()
+        setupNetworkData(appid: "xxx", page: pageIndex)
     }
     
     fileprivate func setupData() {
@@ -33,6 +35,40 @@ class ViewController: NSViewController {
             readTextView.string = result
         } catch let error {
         }
+    }
+    
+    fileprivate func setupNetworkData(appid: String, page: Int32) {
+        
+        var url = "https://itunes.apple.com/rss/customerreviews/page=\(page)/id=\(appid)/sortby=mostrecent/json?l=en&&cc=cn"
+        
+        var request = URLRequest(url: URL(string: url)!, cachePolicy: URLRequest.CachePolicy(rawValue: 1)!, timeoutInterval: 5)
+        request.httpMethod = "GET"
+        
+        URLSession.shared.dataTask(with: request, completionHandler: {[weak self] (data: Data?, response: URLResponse?, error: Error?) in
+            
+            NSLog("返回结果: \(self!.pageIndex) ")
+            if error != nil {
+                NSLog("error: \(error!.localizedDescription)")
+                return
+            }
+            
+            if let data = data {
+                if let result = String(data: data, encoding: String.Encoding.utf8) {
+                    
+                    print("返回结果: \(result)")
+                    
+                    DispatchQueue.main.async {
+                        self!.pageIndex += 1
+                        if self!.pageIndex < 100 {
+                            self?.setupNetworkData(appid: "1122050795", page: self!.pageIndex)
+                        }
+                        
+                    }
+                    
+                }
+            }
+        }).resume()
+        
     }
     
     override var representedObject: Any? {

@@ -205,5 +205,44 @@ class CommentInfo: NSObject {
         
         return (commentData, result)
     }
+    
+    class func parse(from itunesString: String) ->[CommentInfo] {
+        
+        
+//        {
+//            "feed": {
+//                "entry": [
+//                {
+//                "attributes": {
+//                "amount": "0.00000",
+//                "currency": "CNY"
+//                }
+//                },
+//                {
+//                "author": {
+//                "uri": {
+//                "label": "https://itunes.apple.com/cn/reviews/id633600581?l=en"
+//                },
+//                "name": {
+//                "label": "无言情话_"
+//                },
+//                "label": ""
+//                },
+//                "title": {
+//                "label": "可以用，不错。"
+//                },
+//                "content": {
+//                "label": "现在每天必开的应用之一  我不解释了，就是好",
+//                "attributes": {
+//                "type": "text"
+//                }
+//                }
+//                }
+//                ]
+//            }
+//        }
+        
+        return [CommentInfo]()
+    }
 
 }
