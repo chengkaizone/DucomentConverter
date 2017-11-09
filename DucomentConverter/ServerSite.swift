@@ -63,11 +63,49 @@ class ServerSite: NSObject {
         return "[\(longitude!),\(latitude!), \"\(name!) <br>地址: \(addr!) <br>电话: \(phone) \", \"\(name!)\"], \r\n"
     }
     
-    
-    
     func frameString() -> String {
         
         return "<IFRAME></IFRAME>\r\n<li><a href=\"javascript:void(0)\" onclick=\"LocalSet(0)\">\(name!) </a></li>\r\n"
+    }
+    
+    class func parse(from string: String?, splitStr: String = "\r\n") -> [ServerSite]? {
+        
+        guard let str = string else {
+            return nil
+        }
+        
+        var data = [ServerSite]()
+        let lineStrs = str.components(separatedBy: splitStr)
+        
+        for i in 0 ..< lineStrs.count {
+            
+            let lineStr = lineStrs[i]
+            
+            if lineStr == "" {
+                continue
+            }
+            
+            NSLog("line result:  \(i)   >|\(lineStr)|<")
+            let obj = ServerSite(line: lineStr)
+            
+            data.append(obj)
+        }
+        
+        return data
+    }
+    
+    class func parseToString(from string: String?) -> String {
+        
+        if let data = ServerSite.parse(from: string) {
+            var result: String = ""
+            for site in data {
+                result.append(site.htmlString())
+            }
+            
+            return result
+        }
+        
+        return ""
     }
     
 }

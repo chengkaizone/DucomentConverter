@@ -50,6 +50,7 @@ class CommentInfo: NSObject {
         super.init()
     }
     
+    /** 转换成为可直接拷贝到excel的文本 */
     func lineString() -> String {
  
         let encodedLength = self.content.endIndex.encodedOffset - self.content.startIndex.encodedOffset
@@ -71,6 +72,138 @@ class CommentInfo: NSObject {
         let tmpContent = start + "\(self.keywords)" + middle + "\(markSerial)" + end
 
         return tmpContent + "\t" + self.title + "\n"
+    }
+    
+    /** 从自己准备好的文本中读取, 文本格式如下
+     * title
+     * content
+     *
+     * title
+     * content
+     */
+    class func parse(text: String?, splitStr: String = "\n\n", keywords: String, markSerial: Int32) ->[CommentInfo] {
+        
+        guard let str = text else {
+            return [CommentInfo]()
+        }
+        
+        var commentData = [CommentInfo]()
+        let lineStrs = str.components(separatedBy: "\n\n")
+
+        for i in 0 ..< lineStrs.count {
+            
+            let lineStr = lineStrs[i]
+            
+            if lineStr == "" {
+                continue
+            }
+            
+            NSLog("line result:  \(i)   >>|\(lineStr)|<")
+            let info = CommentInfo(line: lineStr, keywords: keywords, markSerial: markSerial)
+            
+            commentData.append(info)
+        }
+        
+        var tmpData: [CommentInfo] = [CommentInfo]()
+        for info in commentData {
+            if info.content.characters.count < 10 || info.content.contains("该条评论已经被删除") {
+                tmpData.append(info)
+            }
+        }
+        NSLog("获取到的无效效记录数：\(tmpData.count)")
+        
+        for info in tmpData {
+            
+            if let index = commentData.index(of: info) {
+                commentData.remove(at: index)
+            }
+        }
+        
+        NSLog("获取到的有效记录数：\(commentData.count)")
+        
+        return commentData
+    }
+    
+    
+    // 从excel中获取的数据读取
+    class func parse(from excelString: String?, splitStr: String = "\n", keywords: String, markSerial: Int32) -> [CommentInfo] {
+        
+        guard let str = excelString else {
+            return [CommentInfo]()
+        }
+        
+        var commentData = [CommentInfo]()
+        
+        let lineStrs = str.components(separatedBy: splitStr)
+        
+        var lineCount: Int32 = 0
+        
+        var title: String!
+        var content: String!
+        
+        for i in 0 ..< lineStrs.count {
+            let lineStr = lineStrs[i]
+            if lineStr == "" {
+                continue
+            }
+            
+            NSLog("line result:  \(i)   >>|\(lineStr)|<")
+            if lineCount % 2 == 0 {// 获取到title
+                title = lineStr
+            } else {
+                content = lineStr
+            }
+            
+            
+            if title != nil && content != nil {
+                let info = CommentInfo(keywords: keywords, markSerial: markSerial)
+                info.title = title
+                info.content = content
+                
+                commentData.append(info)
+                title = nil
+                content = nil
+            }
+            
+            lineCount += 1
+        }
+        
+        var tmpData: [CommentInfo] = [CommentInfo]()
+        for info in commentData {
+            if info.content.characters.count < 10 || info.content.contains("该条评论已经被删除") {
+                tmpData.append(info)
+            }
+        }
+        
+        NSLog("获取到的无效效记录数：\(tmpData.count)")
+        
+        for info in tmpData {
+            
+            if let index = commentData.index(of: info) {
+                commentData.remove(at: index)
+            }
+        }
+        
+        NSLog("获取到的有效记录数：\(commentData.count)")
+        
+        return commentData
+    }
+    
+    /** 直接导出 */
+    class func parseToString(from excelString: String?, keywords: String, markSerial: Int32) -> ([CommentInfo], String) {
+        
+        guard let str = excelString else {
+            return ([CommentInfo](), "")
+        }
+        
+        var commentData = CommentInfo.parse(from: excelString, keywords: keywords, markSerial: markSerial)
+        
+        var result: String = ""
+        for info in commentData {
+            result.append(info.lineString())
+        }
+        
+        return (commentData, result)
     }
 
 }
