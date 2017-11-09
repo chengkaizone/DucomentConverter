@@ -17,6 +17,18 @@ class CommentInfo: NSObject {
     var markSerial: Int32 = 0
     
     // 根据一行数据初始化
+    init(keywords: String, markSerial: Int32) {
+
+        self.title = ""
+        self.content = ""
+        
+        self.keywords = keywords
+        self.markSerial = markSerial
+        
+        super.init()
+    }
+    
+    // 根据一行数据初始化
     init(line: String, keywords: String, markSerial: Int32) {
         let arr = line.components(separatedBy: "\n")
         

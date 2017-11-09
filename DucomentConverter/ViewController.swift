@@ -17,8 +17,8 @@ class ViewController: NSViewController {
     
     var data: [ServerSite]!
     
-    var keywords: String = "视频剪辑制作"
-    var markSerial: Int32 = 12
+    var keywords: String = "单位转换计算器"
+    var markSerial: Int32 = 24
     var commentData: [CommentInfo]!
     
     override func viewDidLoad() {
@@ -31,18 +31,14 @@ class ViewController: NSViewController {
         
         self.commentData = [CommentInfo]()
         let path = Bundle.main.path(forResource: "content", ofType: "txt")!
-        
         NSLog("path: \(path)")
-        
         do {
             
             let data = try Data(contentsOf: URL(fileURLWithPath: path))
             let result = String.init(data: data, encoding: String.Encoding.utf8)
-            NSLog("result: \(result)")
+            
             readTextView.string = result
-            
         } catch let error {
-            
         }
     }
     
@@ -79,11 +75,77 @@ class ViewController: NSViewController {
             self.commentData.append(info)
         }
     }
+    
+    // 从excel中获取的数据读取
+    fileprivate func readCommentStr2() {
+        
+        guard let str = readTextView.string else {
+            
+            return
+        }
+        
+        self.commentData.removeAll()
+        
+        let lineStrs = str.components(separatedBy: "\n")
+        
+        var lineCount: Int32 = 0
+        
+        var title: String!
+        var content: String!
+        
+        for i in 0 ..< lineStrs.count {
+            let lineStr = lineStrs[i]
+            if lineStr == "" {
+                continue
+            }
+            
+            NSLog("line result:  \(i)   >>|\(lineStr)|<")
+            if lineCount % 2 == 0 {// 获取到title
+                title = lineStr
+            } else {
+                content = lineStr
+            }
+            
+
+            if title != nil && content != nil {
+                let info = CommentInfo(keywords: keywords, markSerial: markSerial)
+                info.title = title
+                info.content = content
+                
+                self.commentData.append(info)
+                
+                title = nil
+                content = nil
+            }
+            
+            lineCount += 1
+        }
+        
+        var tmpData: [CommentInfo] = [CommentInfo]()
+        for info in commentData {
+            
+            if info.content.characters.count < 10 || info.content.contains("该条评论已经被删除") {
+                tmpData.append(info)
+            }
+        }
+        NSLog("获取到的无效效记录数：\(tmpData.count)")
+        
+        for info in tmpData {
+            
+            if let index = commentData.index(of: info) {
+                commentData.remove(at: index)
+            }
+        }
+        
+        NSLog("获取到的有效记录数：\(commentData.count)")
+        
+        countLabel.stringValue = String(commentData.count)
+    }
 
     
     @IBAction func readAction(_ sender: Any) {
         
-        self.readCommentStr()
+        self.readCommentStr2()
     }
     
     @IBAction func outAction(_ sender: Any) {
